@@ -44,7 +44,7 @@ if __name__ == "__main__":
         dependency_links=links,
         package_data={
             '': ['*.pkl'],
-            'head_detector': ['assets/*', 'assets/flame_indices/*'],
+            'head_detector': ['assets/*', 'assets/flame_indices/*', 'Sim3DR/*'],
         },
         cmdclass={"build_ext": build_ext},
         ext_modules=[
