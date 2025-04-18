@@ -57,11 +57,11 @@ def compute_ncc_color_codes(template_face: np.ndarray, subset_indexes: Optional[
 
 class PNCCProcessor:
     def __init__(self):
-        self.indices = np.load(get_relative_path('assets/flame_indices/head_w_ears.npy', __file__))
+        self.indices = np.load(get_relative_path('assets/flame_indices/head_w_ears_neck.npy', __file__))
         self.triangles = np.load(get_relative_path('assets/full_faces.npy', __file__))
         self.triangles = np.array([x for x in self.triangles if all(vertex_index in self.indices for vertex_index in x)]).astype(np.int32)
         v_template = np.load(get_relative_path('assets/v_template.npy', __file__))
-        self.colors = compute_ncc_color_codes(v_template, self.indices)
+        self.colors = compute_ncc_color_codes(v_template, self.indices)  # shape [5023, 3], values in [0.0, 1.0]
 
     def __call__(self, image: np.ndarray, heads: List[HeadMetadata]) -> np.ndarray:
         pncc_image = np.zeros_like(image)
