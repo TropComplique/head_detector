@@ -1,2 +1,3 @@
 include *.pkl
 recursive-include assets *
+recursive-include Sim3DR *
