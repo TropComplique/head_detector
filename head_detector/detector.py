@@ -34,7 +34,7 @@ class HeadDetector:
 
     def _read_model(self, model: str, weights_path: str) -> torch.jit.ScriptModule:
         model_path = hf_hub_download(REPO_ID, f"{model}.trcd") if weights_path is None else weights_path
-        loaded_model = torch.jit.load(model_path)
+        loaded_model = torch.jit.load(model_path, map_location="cpu")
         loaded_model.to(self._dtype).to(self._device)
         loaded_model.eval()
         return loaded_model
